@@ -8,12 +8,15 @@ class App extends Component {
   }
 
   onChangeThrone = e => {
+    this.setState({ throne: parseInt(e.target.value, 10) });
   }
 
   onChangeAction = e => {
+    this.setState({ action: parseInt(e.target.value, 10) });
   }
 
   onChangeOther = e => {
+    this.setState({ other: parseInt(e.target.value, 10) });
   }
 
   render() {
