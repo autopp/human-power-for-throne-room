@@ -1,18 +1,28 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { throne: 1, action: 1, other: 0 };
+  }
+
+  onChangeThrone = e => {
+  }
+
+  onChangeAction = e => {
+  }
+
+  onChangeOther = e => {
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h1>Human power for throne room</h1>
+        <div>玉座の間の枚数: <input type="number" value={this.state.throne} min="1" max="10" step="1" onChange={this.onChangeThrone} /></div>
+        <div>玉座の間以外のアクションカードの枚数: <input type="number" value={this.state.action} min="1" max="100" step="1" onChange={this.onChangeAction} /></div>
+        <div>それ以外のアクションカードの枚数: <input type="number" value={this.state.other} min="0" max="100" step="1" onChange={this.onChangeOther} /></div>
       </div>
     );
   }
