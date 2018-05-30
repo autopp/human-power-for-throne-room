@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { sprintf } from 'sprintf-js';
 import './App.css';
 
 class App extends Component {
@@ -38,7 +39,7 @@ class App extends Component {
     let total = throne + action + other;
 
     if (total <= 5) {
-      return throne >= 1 && action == 0 ? 100 : 0;
+      return throne >= 1 && action === 0 ? 100 : 0;
     }
 
     return (this.C(throne + other, 5) - this.C(other, 5)) / this.C(total, 5) * 100;
@@ -69,8 +70,8 @@ class App extends Component {
         <div>玉座の間の枚数: <input type="number" value={this.state.throne} min="1" max="10" step="1" onChange={this.onChangeThrone} /></div>
         <div>玉座の間以外のアクションカードの枚数: <input type="number" value={this.state.action} min="1" max="100" step="1" onChange={this.onChangeAction} /></div>
         <div>それ以外のアクションカードの枚数: <input type="number" value={this.state.other} min="0" max="100" step="1" onChange={this.onChangeOther} /></div>
-        <div>玉座事故を引き起こす確率: {this.calcProbabilityOfAccident()}%</div>
-        <div>玉座の間2枚とそれ以外のアクションカードを引ける確率: {this.calcProbabilityOfDoubleThroneAction()}%</div>
+        <div>玉座事故を引き起こす確率: {sprintf("%.1f", this.calcProbabilityOfAccident())}%</div>
+        <div>玉座の間2枚とそれ以外のアクションカードを引ける確率: {sprintf("%.1f", this.calcProbabilityOfDoubleThroneAction())}%</div>
       </div>
     );
   }
