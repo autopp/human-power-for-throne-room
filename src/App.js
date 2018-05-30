@@ -97,7 +97,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className="col-lg-3">
-            <div>それ以外のカードの枚数</div>
+            <div>それ以外のカードの枚数:</div>
           </div>
           <div className="col-lg-2">
             <input type="number" value={this.state.other} min="0" max="100" step="1" onChange={this.onChangeOther} />
@@ -105,7 +105,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className="col-lg-3">
-            <div>手札枚数</div>
+            <div>手札枚数:</div>
           </div>
           <div className="col-lg-2">
             <input type="number" value={this.state.hand} min="2" max="20" step="1" onChange={this.onChangeHand} />
