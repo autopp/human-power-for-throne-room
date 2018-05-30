@@ -89,7 +89,7 @@ class App extends Component {
         </div>
         <div className="row">
           <div className="col-lg-3">
-            <div>それ以外のアクションカードの枚数</div>
+            <div>それ以外のカードの枚数</div>
           </div>
           <div className="col-lg-2">
             <input type="number" value={this.state.other} min="0" max="100" step="1" onChange={this.onChangeOther} />
