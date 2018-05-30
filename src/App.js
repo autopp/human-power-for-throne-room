@@ -39,32 +39,36 @@ class App extends Component {
   }
 
   calcProbabilityOfAccident() {
-    let { throne, action, other } = this.state;
+    let { throne, action, other, hand } = this.state;
     let total = throne + action + other;
 
-    if (total <= 5) {
+    if (total <= hand) {
       return throne >= 1 && action === 0 ? 100 : 0;
     }
 
-    return (this.C(throne + other, 5) - this.C(other, 5)) / this.C(total, 5) * 100;
+    return (this.C(throne + other, hand) - this.C(other, hand)) / this.C(total, hand) * 100;
   }
 
   calcProbabilityOfDoubleThroneAction() {
-    let { throne, action, other } = this.state;
+    let { throne, action, other, hand } = this.state;
     let total = throne + action + other
 
-    if (total <= 5) {
+    if (hand < 3) {
+      return 0;
+    }
+
+    if (total <= hand) {
       return throne >= 2 && action >= 1 ? 100 : 0;
     }
 
-    let throne0 = this.C(action + other, 5);
-    let throne1 = this.C(throne, 1) * this.C(action + other, 4);
-    let throne2 = this.C(throne, 2) * this.C(other, 3);
-    let throne3 = this.C(throne, 3) * this.C(other, 2);
-    let throne4 = this.C(throne, 4) * this.C(other, 1);
-    let throne5 = this.C(throne, 5);
+    let complementaryEvent = this.C(action + other, hand) + this.C(throne, 1) * this.C(action + other, hand - 1);
 
-    return Math.abs(100 - (throne0 + throne1 + throne2 + throne3 + throne4 + throne5) / this.C(total, 5) * 100);
+    for (let i = 2; i < hand; i++) {
+      complementaryEvent += this.C(throne, i) * this.C(other, hand - i)
+    }
+    complementaryEvent += this.C(throne, hand);
+
+    return Math.abs(100 - complementaryEvent / this.C(total, hand) * 100);
   }
 
   render() {
