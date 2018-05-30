@@ -5,7 +5,7 @@ import './App.css';
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { throne: 1, action: 1, other: 0 };
+    this.state = { throne: 1, action: 1, other: 0, hand: 5 };
   }
 
   onChangeThrone = e => {
@@ -18,6 +18,10 @@ class App extends Component {
 
   onChangeOther = e => {
     this.setState({ other: parseInt(e.target.value, 10) });
+  }
+
+  onChangeHand = e => {
+    this.setState({ hand: parseInt(e.target.value, 10) });
   }
 
   C(x, y) {
@@ -93,6 +97,14 @@ class App extends Component {
           </div>
           <div className="col-lg-2">
             <input type="number" value={this.state.other} min="0" max="100" step="1" onChange={this.onChangeOther} />
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-lg-3">
+            <div>手札枚数</div>
+          </div>
+          <div className="col-lg-2">
+            <input type="number" value={this.state.hand} min="2" max="20" step="1" onChange={this.onChangeHand} />
           </div>
         </div>
         <h3>玉座事故を引き起こす確率 = {sprintf("%.2f", this.calcProbabilityOfAccident())}%</h3>
