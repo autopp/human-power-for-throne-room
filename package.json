@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "generatorics": "^1.1.0",
+    "gh-pages": "^1.1.0",
     "react": "^16.4.0",
     "react-dom": "^16.4.0",
     "react-scripts": "1.1.4",
@@ -14,6 +15,6 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "sample": "node sample.js"
+    "deploy": "npm run build && gh-pages -d build"
   }
 }
